@@ -14,3 +14,21 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+.ant-picker .ant-picker-input span.ant-picker-suffix,
+.ant-picker.ant-picker-range span.ant-picker-suffix {
+  margin-left: 1px;
+  margin-right: 10px;
+  order: -1;
+}
+
+.ant-table-thead .ant-table-cell {
+  background-color: white !important;
+  border-left: none !important;
+  border-right: none !important;
+}
+
+.ant-table-tbody > tr > td {
+  border-left: none !important;
+  border-right: none !important;
+}
