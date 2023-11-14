@@ -1,5 +1,7 @@
-import Submissions from "@/components/Submissions";
-
 export default function Home() {
-  return <Submissions />;
+  return (
+    <div className="temp">
+      <h1>Home page</h1>
+    </div>
+  );
 }

@@ -32,3 +32,10 @@ a {
   border-left: none !important;
   border-right: none !important;
 }
+
+.temp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 72px);
+}

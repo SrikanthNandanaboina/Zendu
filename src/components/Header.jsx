@@ -1,3 +1,5 @@
+"use client";
+
 import {
   MainWrapper,
   NavTabText,
@@ -7,10 +9,17 @@ import {
   ZenduText,
 } from "@/styles/header";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
-const NavTab = ({ logo, name }) => {
+const NavTab = ({ logo, name, route }) => {
+  const router = useRouter();
+
   return (
-    <NavTabWraper>
+    <NavTabWraper
+      onClick={() => {
+        router.push(route);
+      }}
+    >
       <Image
         src={`/${logo}.svg`}
         alt={`${logo} Logo`}
@@ -25,12 +34,12 @@ const NavTab = ({ logo, name }) => {
 
 const Header = () => {
   const tabs = [
-    { logo: "format_list_bulleted", name: "Forms" },
-    { logo: "people", name: "Customers" },
-    { logo: "graphic_eq", name: "Submissions" },
-    { logo: "history", name: "History" },
-    { logo: "insert_chart_outlined", name: "Reports" },
-    { logo: "insert_chart_outlined", name: "Workflow" },
+    { logo: "format_list_bulleted", name: "Forms", route: "/forms" },
+    { logo: "people", name: "Customers", route: "/customers" },
+    { logo: "graphic_eq", name: "Submissions", route: "/submissions" },
+    { logo: "history", name: "History", route: "/history" },
+    { logo: "insert_chart_outlined", name: "Reports", route: "/reports" },
+    { logo: "insert_chart_outlined", name: "Workflow", route: "/workflow" },
   ];
 
   return (
@@ -38,7 +47,12 @@ const Header = () => {
       <ZenduText>ZenduForms</ZenduText>
       <TabsWrapper>
         {tabs.map((ele) => (
-          <NavTab logo={ele.logo} name={ele.name} key={ele.name} />
+          <NavTab
+            logo={ele.logo}
+            name={ele.name}
+            key={ele.name}
+            route={ele.route}
+          />
         ))}
       </TabsWrapper>
       <NotificationsWrapper>

@@ -34,6 +34,7 @@ export const NavTabWraper = styled.div`
   gap: 8px;
   margin: 0 16px;
   height: 72px;
+  cursor: pointer;
 `;
 
 export const NavTabText = styled.div`
