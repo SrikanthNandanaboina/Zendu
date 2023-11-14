@@ -1,6 +1,5 @@
 "use client";
 import { SubmissionsDataFilters, SubmissionsText } from "@/styles/submissions";
-import Header from "./Header";
 import Filters from "./Filters";
 import SubmissionsDataTable from "./SubmissionsDataTable";
 import { useState } from "react";
@@ -14,7 +13,6 @@ const Submissions = () => {
 
   return (
     <>
-      <Header />
       <SubmissionsDataFilters>
         <SubmissionsText>Submissions</SubmissionsText>
         <Filters
