@@ -2,17 +2,21 @@
 import { SubmissionsDataFilters, SubmissionsText } from "@/styles/submissions";
 import Header from "./Header";
 import Filters from "./Filters";
-import SubmissionsData from "./SubmissionsData";
+import SubmissionsDataTable from "./SubmissionsDataTable";
+import { useState } from "react";
+import SubmissionsDataMap from "./SubmissionsDataMap";
 
 const Submissions = () => {
+  const [viewType, setViewType] = useState("list");
+
   return (
     <>
       <Header />
       <SubmissionsDataFilters>
         <SubmissionsText>Submissions</SubmissionsText>
-        <Filters />
+        <Filters setViewType={setViewType} />
       </SubmissionsDataFilters>
-      <SubmissionsData />
+      {viewType === "map" ? <SubmissionsDataMap /> : <SubmissionsDataTable />}
     </>
   );
 };

@@ -1,7 +1,9 @@
 import React from "react";
 import { Badge, Table, Tag } from "antd";
-import { SubmissionsDataWrapper } from "@/styles/submissions";
+import { SubmissionsDataWrapper, DateText } from "@/styles/submissions";
 import dayjs from "dayjs";
+import { submissionData } from "@/utils/submissionData";
+import { isDateExpired } from "@/utils";
 
 const columns = [
   {
@@ -51,37 +53,11 @@ const columns = [
     title: "Due Date",
     dataIndex: "date",
     key: "date",
-    render: (text) => <>{dayjs(text).format("MMM D, h:mm A")}</>,
-  },
-];
-
-const data = [
-  {
-    key: "1",
-    task: "Work Flow: Requires Location",
-    status: "Uncomplete",
-    address: "4140 Parker Rd. Allentown, New Mexico 31134",
-    from: "zendu@zendu.com",
-    to: "tracy@zenduit.com",
-    date: "2023-11-13T04:04:57.292Z",
-  },
-  {
-    key: "2",
-    task: "Work Flow: Requires Location",
-    status: "Unassigned",
-    address: "1901 Thornridge Cir. Shiloh, Hawaii 81063",
-    from: "zendu@zendu.com",
-    to: "tracy@zenduit.com",
-    date: "2023-11-15T07:04:57.292Z",
-  },
-  {
-    key: "3",
-    task: "Work Flow: Requires Location",
-    status: "Low Risk",
-    address: "2118 Thornridge Cir. Syracuse, Connecticut 35624",
-    from: "zendu@zendu.com",
-    to: "tracy@zenduit.com",
-    date: "2023-11-14T10:04:57.292Z",
+    render: (text) => (
+      <DateText isExpired={isDateExpired(text)}>
+        {dayjs(text).format("MMM D, h:mm A")}
+      </DateText>
+    ),
   },
 ];
 
@@ -110,7 +86,8 @@ const SubmissionsData = () => {
         }}
         bordered
         columns={columns}
-        dataSource={data}
+        dataSource={submissionData}
+        scroll={{ y: 400 }}
       />
     </SubmissionsDataWrapper>
   );

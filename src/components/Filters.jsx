@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Select, Radio, Button } from "antd";
 import { FiltersSection, FiltersWrapper } from "@/styles/submissions";
 
-const Filters = () => {
+const Filters = ({ setViewType }) => {
   return (
     <FiltersWrapper>
       <FiltersSection>
@@ -58,6 +58,7 @@ const Filters = () => {
           defaultValue="list"
           buttonStyle="solid"
           style={{ display: "flex" }}
+          onChange={(e) => setViewType(e.target.value)}
         >
           <Radio.Button
             style={{ height: 48, display: "flex", alignItems: "center" }}
