@@ -22,13 +22,13 @@ a {
   order: -1;
 }
 
-.ant-table-thead .ant-table-cell {
+.ant-table-thead .ant-table-cell:not(:last-child) {
   background-color: white !important;
   border-left: none !important;
   border-right: none !important;
 }
 
-.ant-table-tbody > tr > td {
+.ant-table-tbody > tr > td:not(:last-child) {
   border-left: none !important;
   border-right: none !important;
 }
