@@ -29,7 +29,7 @@ const Filters = ({ setViewType, setStatus, setFrom, setSearch }) => {
           placeholder="Search..."
           prefix={
             <Image
-              src="/search.svg"
+              src="/searchIcon.svg"
               alt="search logo"
               width={24}
               height={24}
