@@ -7,10 +7,12 @@ import debounce from "lodash/debounce";
 
 const Filters = ({ setViewType, setStatus, setFrom, setSearch }) => {
   const viewOptions = ["map", "list"];
-  const statusArray = submissionData.map((ele) => ({
-    value: ele.status,
-    label: ele.status,
-  }));
+  const statusArray = [...new Set(submissionData.map((ele) => ele.status))].map(
+    (ele) => ({
+      value: ele,
+      label: ele,
+    })
+  );
   const fromArray = [...new Set(submissionData.map((ele) => ele.from))].map(
     (ele) => ({
       value: ele,
