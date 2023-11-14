@@ -32,9 +32,10 @@ export const NavTabWraper = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
-  margin: 0 16px;
+  padding: 0 16px;
   height: 72px;
   cursor: pointer;
+  background: ${(props) => (props.isActive ? "#1773BB" : "none")};
 `;
 
 export const NavTabText = styled.div`

@@ -9,16 +9,19 @@ import {
   ZenduText,
 } from "@/styles/header";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 
 const NavTab = ({ logo, name, route }) => {
   const router = useRouter();
+  const pathname = usePathname();
+  const isActive = pathname === route;
 
   return (
     <NavTabWraper
       onClick={() => {
         router.push(route);
       }}
+      isActive={isActive}
     >
       <Image
         src={`/${logo}.svg`}
