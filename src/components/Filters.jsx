@@ -2,8 +2,22 @@ import { DatePicker, Input } from "antd";
 import Image from "next/image";
 import { Select, Radio, Button } from "antd";
 import { FiltersSection, FiltersWrapper } from "@/styles/submissions";
+import { submissionData } from "@/utils/submissionData";
+import debounce from "lodash/debounce";
 
-const Filters = ({ setViewType }) => {
+const Filters = ({ setViewType, setStatus, setFrom, setSearch }) => {
+  const viewOptions = ["map", "list"];
+  const statusArray = submissionData.map((ele) => ({
+    value: ele.status,
+    label: ele.status,
+  }));
+  const fromArray = [...new Set(submissionData.map((ele) => ele.from))].map(
+    (ele) => ({
+      value: ele,
+      label: ele,
+    })
+  );
+
   return (
     <FiltersWrapper>
       <FiltersSection>
@@ -22,34 +36,36 @@ const Filters = ({ setViewType }) => {
               priority
             />
           }
+          onChange={(e) => {
+            const value = e.target.value;
+            debounce(() => {
+              setSearch(value.toLowerCase());
+            }, 500)();
+          }}
         />
         <Select
+          allowClear
           placeholder="Select From"
           style={{
             width: 209,
             height: 48,
           }}
-          onChange={() => {}}
-          options={[
-            {
-              value: "jack",
-              label: "Jack",
-            },
-          ]}
+          onChange={(data) => {
+            setFrom(data);
+          }}
+          options={fromArray}
         />
         <Select
+          allowClear
           placeholder="Select Status"
           style={{
             width: 209,
             height: 48,
           }}
-          onChange={() => {}}
-          options={[
-            {
-              value: "jack",
-              label: "Jack",
-            },
-          ]}
+          onChange={(data) => {
+            setStatus(data);
+          }}
+          options={statusArray}
         />
         <DatePicker style={{ width: 209 }} format="DD/MM/YYYY" />
       </FiltersSection>
@@ -60,18 +76,20 @@ const Filters = ({ setViewType }) => {
           style={{ display: "flex" }}
           onChange={(e) => setViewType(e.target.value)}
         >
-          <Radio.Button
-            style={{ height: 48, display: "flex", alignItems: "center" }}
-            value="map"
-          >
-            Map
-          </Radio.Button>
-          <Radio.Button
-            style={{ height: 48, display: "flex", alignItems: "center" }}
-            value="list"
-          >
-            List
-          </Radio.Button>
+          {viewOptions.map((ele) => (
+            <Radio.Button
+              style={{
+                height: 48,
+                display: "flex",
+                alignItems: "center",
+                textTransform: "capitalize",
+              }}
+              value={ele}
+              key={ele}
+            >
+              {ele}
+            </Radio.Button>
+          ))}
         </Radio.Group>
         <Button
           style={{
@@ -90,6 +108,7 @@ const Filters = ({ setViewType }) => {
               priority
             />
           }
+          onClick={() => alert("Export clicked")}
         >
           Export
         </Button>

@@ -12,6 +12,7 @@
     "antd": "^5.11.1",
     "dayjs": "^1.11.10",
     "google-map-react": "^2.2.1",
+    "lodash": "^4.17.21",
     "next": "14.0.2",
     "react": "^18",
     "react-dom": "^18",

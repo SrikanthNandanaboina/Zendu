@@ -3,7 +3,7 @@ import { Badge, Table, Tag } from "antd";
 import { SubmissionsDataWrapper, DateText } from "@/styles/submissions";
 import dayjs from "dayjs";
 import { submissionData } from "@/utils/submissionData";
-import { isDateExpired } from "@/utils";
+import { filterData, isDateExpired } from "@/utils";
 
 const columns = [
   {
@@ -61,7 +61,7 @@ const columns = [
   },
 ];
 
-const SubmissionsData = () => {
+const SubmissionsData = ({ status, from, search }) => {
   const rowSelection = {
     onChange: (selectedRowKeys, selectedRows) => {
       console.log(
@@ -77,6 +77,8 @@ const SubmissionsData = () => {
     }),
   };
 
+  const data = filterData({ data: submissionData, from, status, search });
+
   return (
     <SubmissionsDataWrapper>
       <Table
@@ -86,7 +88,7 @@ const SubmissionsData = () => {
         }}
         bordered
         columns={columns}
-        dataSource={submissionData}
+        dataSource={data}
         scroll={{ y: 400 }}
       />
     </SubmissionsDataWrapper>

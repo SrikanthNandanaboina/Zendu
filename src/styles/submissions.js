@@ -40,6 +40,8 @@ export const SubmissionCardsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
+  height: 560px;
+  overflow-y: scroll;
 `;
 
 export const SubmissionCard = styled.div`

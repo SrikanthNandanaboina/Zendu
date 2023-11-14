@@ -8,15 +8,27 @@ import SubmissionsDataMap from "./SubmissionsDataMap";
 
 const Submissions = () => {
   const [viewType, setViewType] = useState("list");
+  const [search, setSearch] = useState("");
+  const [status, setStatus] = useState(null);
+  const [from, setFrom] = useState(null);
 
   return (
     <>
       <Header />
       <SubmissionsDataFilters>
         <SubmissionsText>Submissions</SubmissionsText>
-        <Filters setViewType={setViewType} />
+        <Filters
+          setViewType={setViewType}
+          setStatus={setStatus}
+          setFrom={setFrom}
+          setSearch={setSearch}
+        />
       </SubmissionsDataFilters>
-      {viewType === "map" ? <SubmissionsDataMap /> : <SubmissionsDataTable />}
+      {viewType === "map" ? (
+        <SubmissionsDataMap search={search} status={status} from={from} />
+      ) : (
+        <SubmissionsDataTable search={search} status={status} from={from} />
+      )}
     </>
   );
 };
