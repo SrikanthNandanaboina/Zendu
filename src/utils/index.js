@@ -29,7 +29,7 @@ export const filterData = ({ data, status, from, search }) => {
       item = ele;
     }
 
-    if (!isEmpty(search) && ele.task.toLowerCase().includes(search)) {
+    if (!isEmpty(search) && ele.address.toLowerCase().includes(search)) {
       item = ele;
     } else if (!isEmpty(search)) {
       return;
